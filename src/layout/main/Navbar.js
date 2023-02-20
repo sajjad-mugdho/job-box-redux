@@ -8,8 +8,10 @@ import { logout } from "../../features/auth/authSlice";
 
 const Navbar = () => {
   const { pathname } = useLocation();
-  const { email, role } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
+  const { email, role } = user;
   const dispatch = useDispatch()
+
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -17,7 +19,7 @@ const Navbar = () => {
     }).catch(err => console.error(err))
   }
 
-  console.log(email)
+  console.log(user)
   return (
     <nav
       className={`h-14 fixed w-full z-[999] ${pathname === "/" ? null : "bg-white"
